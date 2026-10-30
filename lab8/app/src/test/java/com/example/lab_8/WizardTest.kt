@@ -15,6 +15,26 @@ class WizardTest {
     }
 
     @Test
+    fun trainWithEnoughMana() {
+        val wizard = Wizard("Merlin", mana = 5, spellPower = 10)
+
+        wizard.train()
+
+        assertEquals(11, wizard.spellPower)
+        assertEquals(0, wizard.mana)
+    }
+
+    @Test
+    fun trainWithoutEnoughMana() {
+        val wizard = Wizard("Merlin", mana = 4, spellPower = 10)
+
+        wizard.train()
+
+        assertEquals(10, wizard.spellPower)
+        assertEquals(4, wizard.mana)
+    }
+
+    @Test
     fun restoreMana_amountAddedExceedsOneHundred_manaSetToOneHundred() {
         evilWizard.restoreMana(80) // 30 + 80 = 110, so mana should be set to 100
 
